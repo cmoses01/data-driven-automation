@@ -16,17 +16,23 @@
       ansible.builtin.fail:
         msg: "netbox_url is undefined"
       when: not netbox_url is defined
+      tags:
+        - always
 
     - name: Check for Netbox Token
       ansible.builtin.fail:
         msg: "netbox_token is undefined"
       when: not netbox_token is defined
+      tags:
+        - always
 
     - name: End play if netbox branch is not main
       ansible.builtin.meta: end_play
       when:
         - netbox_branch_main is defined
         - not netbox_branch_main
+      tags:
+        - always
 
   roles:
     - {role: validate_operational_state, tags: ['device', 'interface']}
