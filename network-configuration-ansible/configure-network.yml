@@ -22,6 +22,12 @@
         msg: "netbox_token is undefined"
       when: not netbox_token is defined
 
+    - name: End play if netbox branch is not main
+      ansible.builtin.meta: end_play
+      when:
+        - netbox_branch_main is defined
+        - not netbox_branch_main
+
   roles:
     - {role: configure_base_device, tags: ['device']}
     - {role: configure_interfaces, tags: ['interface']}

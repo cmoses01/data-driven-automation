@@ -65,12 +65,14 @@
       loop_control:
         loop_var: change
 
-    - name: Fail play due to change in NetBox being in non-main branch
-      ansible.builtin.fail:
-        msg: "Not running automation due to change in NetBox being in non-main branch"
+    - name: Set netbox_branch_main to false due to change in NetBox being in non-main branch
+      ansible.builtin.set_stats:
+        data:
+          netbox_branch_main: false
       when: changed_branches | length > 0
 
-    - name: Change happened in main branch continue to next step in workflow.
-      ansible.builtin.debug:
-        msg: "Change in NetBox happened in main branch.  Moving on..."
+    - name: Set netbox_branch_main to true due to change in NetBox being in main branch
+      ansible.builtin.set_stats:
+        data:
+          netbox_branch_main: true
       when: changed_branches | length == 0
