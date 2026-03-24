@@ -12,6 +12,7 @@
 
 - name: Checking for Site with name {{ asn.data.site }}
   ansible.builtin.uri:
+    validate_certs: false
     url: "{{ netbox_url }}/api/dcim/sites/?name={{ asn.data.site }}"
     method: GET
     headers:
@@ -32,6 +33,7 @@
 
 - name: Updating site {{ asn.data.site }}
   ansible.builtin.uri:
+    validate_certs: false
     url: "{{ netbox_url }}/api/dcim/sites/{{ site_id }}/"
     method: PATCH
     headers:

@@ -1,5 +1,6 @@
 - name: Checking for BGP session with name {{ session.data.name }}
   ansible.builtin.uri:
+    validate_certs: false
     url: "{{ netbox_url }}/api/plugins/bgp/session/?name={{ session.data.name }}"
     method: GET
     headers:
@@ -19,6 +20,7 @@
 
 - name: Updating BGP session {{ session.data.name }}
   ansible.builtin.uri:
+    validate_certs: false
     url: "{{ netbox_url }}/api/plugins/bgp/session/{{ bgp_session_id }}/"
     method: PATCH
     headers:
@@ -31,6 +33,7 @@
 
 - name: Creating BGP session {{ session.data.name }}
   ansible.builtin.uri:
+    validate_certs: false
     url: "{{ netbox_url }}/api/plugins/bgp/session/"
     method: POST
     headers:
@@ -45,6 +48,7 @@
 
 - name: Deleting BGP session {{ session.data.name }}
   ansible.builtin.uri:
+    validate_certs: false
     url: "{{ netbox_url }}/api/plugins/bgp/session/{{ bgp_session_id }}/"
     method: DELETE
     headers:

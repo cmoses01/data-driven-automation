@@ -25,7 +25,8 @@
         'sites',
         api_filter=a_site_filter,
         api_endpoint=netbox_url,
-        token=netbox_token) | community.general.json_query('[0].value.id')
+        token=netbox_token,
+        validate_certs=False) | community.general.json_query('[0].value.id')
       }}"
 
 - name: Construct apifilter for {{ circuit.terminations.z.termination_site }}
@@ -39,7 +40,8 @@
         'sites',
         api_filter=z_site_filter,
         api_endpoint=netbox_url,
-        token=netbox_token) | community.general.json_query('[0].value.id')
+        token=netbox_token,
+        validate_certs=False) | community.general.json_query('[0].value.id')
       }}"
 
 - name: Configure A-side Circuit Terminations for Circuit {{ circuit.data.id ~ ' from ' ~ circuit.data.provider }} # noqa args[module]
