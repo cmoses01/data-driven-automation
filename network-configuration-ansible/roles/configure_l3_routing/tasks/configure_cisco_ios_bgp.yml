@@ -1,5 +1,6 @@
 - name: Query for BGP sessions assigned to {{ inventory_hostname }}
   ansible.builtin.uri:
+    validate_certs: false
     url: "{{ netbox_url }}/api/plugins/bgp/session/?device={{ inventory_hostname }}"
     method: GET
     headers:
