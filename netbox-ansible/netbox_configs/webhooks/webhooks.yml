@@ -11,7 +11,7 @@ webhooks:
       type_create: false
       type_update: true
       type_delete: false
-      content_types:
+      object_types:
         - dcim.device
         - dcim.interface
     state: present
