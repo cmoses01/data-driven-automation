@@ -8,10 +8,4 @@ webhooks:
       additional_headers: |-
         {{ 'Authorization: Basic ' + lookup('ansible.builtin.env', 'EVENT_STREAM_TOKEN', default=undef()) }}
       ssl_verification: false
-      type_create: false
-      type_update: true
-      type_delete: false
-      object_types:
-        - dcim.device
-        - dcim.interface
     state: present
