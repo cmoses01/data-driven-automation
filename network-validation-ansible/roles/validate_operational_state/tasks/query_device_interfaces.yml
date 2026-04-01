@@ -10,6 +10,6 @@
           (interface | community.general.json_query('value.name'))
         ]
       }}
-  loop: "{{ query('netbox.netbox.nb_lookup', 'interfaces', api_filter=interface_filter, api_endpoint=netbox_url, token=netbox_token) }}"
+  loop: "{{ query('netbox.netbox.nb_lookup', 'interfaces', api_filter=interface_filter, api_endpoint=netbox_url, token=netbox_token, validate_certs=false) }}"
   loop_control:
     loop_var: interface

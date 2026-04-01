@@ -13,7 +13,8 @@
             plugin='bgp',
             api_filter=bgp_filter,
             api_endpoint=netbox_url,
-            token=netbox_token)
+            token=netbox_token,
+            validate_certs=false)
           }}
 
     - name: Parse BGP session data
