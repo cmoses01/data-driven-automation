@@ -1,6 +1,6 @@
 - name: Lookup Device VLANs
   ansible.builtin.set_fact:
-    device_vlans: "{{ lookup('netbox.netbox.nb_lookup', 'vlans', api_filter='device=inventory_hostname') }}"
+    device_vlans: "{{ lookup('netbox.netbox.nb_lookup', 'vlans', api_filter='device=inventory_hostname', validate_certs=false) }}"
   when: '"access-switch" in device_roles or "core-switch" in device_roles'
 
 - name: Parse List of VLAN Configuration Data

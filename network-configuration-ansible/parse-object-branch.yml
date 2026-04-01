@@ -47,7 +47,7 @@
             apifilter=object_filter,
             api_endpoint=netbox_url,
             token=netbox_token,
-            validate_certs=False)
+            validate_certs=false)
           }}
       when: object_filter is defined
 
