@@ -1,7 +1,7 @@
 ---
 plugin: netbox.netbox.nb_inventory
 token: "{{ lookup('ansible.builtin.env', 'NETBOX_TOKEN', default=undef()) }}"
-validate_certs: true
+validate_certs: false
 oob_ip_as_primary_ip: true
 interfaces: true
 config_context: true

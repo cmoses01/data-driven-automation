@@ -1,5 +1,6 @@
 - name: Checking for data source with name {{ source.data.name }}
   ansible.builtin.uri:
+    validate_certs: false
     url: "{{ netbox_url }}/api/core/data-sources/?name={{ source.data.name }}"
     method: GET
     headers:
@@ -19,6 +20,7 @@
 
 - name: Updating data source {{ source.data.name }}
   ansible.builtin.uri:
+    validate_certs: false
     url: "{{ netbox_url }}/api/core/data-sources/{{ data_source_id }}/"
     method: PATCH
     headers:
@@ -31,6 +33,7 @@
 
 - name: Creating data source {{ source.data.name }}
   ansible.builtin.uri:
+    validate_certs: false
     url: "{{ netbox_url }}/api/core/data-sources/"
     method: POST
     headers:
@@ -43,6 +46,7 @@
 
 - name: Deleting data source {{ source.data.name }}
   ansible.builtin.uri:
+    validate_certs: false
     url: "{{ netbox_url }}/api/core/data-sources/{{ data_source_id }}/"
     method: DELETE
     headers:

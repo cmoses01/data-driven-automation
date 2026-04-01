@@ -1,5 +1,6 @@
 - name: Checking for event rule with name {{ rule.data.name }}
   ansible.builtin.uri:
+    validate_certs: false
     url: "{{ netbox_url }}/api/extras/event-rules/?name={{ rule.data.name }}"
     method: GET
     headers:
@@ -19,6 +20,7 @@
 
 - name: Updating event rule {{ rule.data.name }}
   ansible.builtin.uri:
+    validate_certs: false
     url: "{{ netbox_url }}/api/extras/event-rules/{{ event_rule_id }}/"
     method: PATCH
     headers:
@@ -31,6 +33,7 @@
 
 - name: Creating event rule {{ rule.data.name }}
   ansible.builtin.uri:
+    validate_certs: false
     url: "{{ netbox_url }}/api/extras/event-rules/"
     method: POST
     headers:
@@ -43,6 +46,7 @@
 
 - name: Deleting event rule {{ rule.data.name }}
   ansible.builtin.uri:
+    validate_certs: false
     url: "{{ netbox_url }}/api/extras/event-rules/{{ data_source_id }}/"
     method: DELETE
     headers:
