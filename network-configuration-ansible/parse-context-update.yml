@@ -13,6 +13,7 @@
     group/netbox.netbox.netbox:
       netbox_url: "{{ netbox_url }}"
       netbox_token: "{{ netbox_token }}"
+      validate_certs: false
 
   pre_tasks:
     - name: Check for Netbox URL
@@ -58,7 +59,8 @@
             plugin='branching',
             apifilter=object_filter,
             api_endpoint=netbox_url,
-            token=netbox_token)
+            token=netbox_token,
+            validate_certs=False)
           }}
       when: object_filter is defined
 
@@ -96,7 +98,7 @@
     - name: Look up hosts using the updated config context in NetBox
       ansible.builtin.set_fact:
         target_hosts: "{{
-          lookup('netbox.netbox.nb_lookup', 'devices', api_filter=parsed_api_filter) | community.general.json_query('[*].value.name') | join(',')
+          lookup('netbox.netbox.nb_lookup', 'devices', api_filter=parsed_api_filter, validate_certs=False) | community.general.json_query('[*].value.name') | join(',')
           }}"
       when: run_automation and parsed_api_filter is defined
 
@@ -123,7 +125,7 @@
         organization: Data-Driven-Automation
         limit: "{{ target_hosts }}"
         tags: "{{ target_tags | default(omit) }}"
-        validate_certs: "{{ controller_verify_ssl | default(omit) }}"
+        validate_certs: false
       when: run_automation and target_hosts != ""
 
     - name: Not running automation because run_automation is false
